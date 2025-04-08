@@ -15,18 +15,21 @@ The entire build process is containerized using Docker, allowing the project to 
 - Planning, Development & Administration of Modern Applications
 
 ## Makefile to enhance productivity:
+``` 
 .PHONY: build stop start restart
 
+
 build: stop
-docker-compose -f docker-compose.yml build
+	docker-compose -f docker-compose.yml build
 
 stop:
-docker-compose -f docker-compose.yml down
+	docker-compose -f docker-compose.yml down
 
 start: stop init_server
 
 init_server:
-docker-compose -f docker-compose.yml up --remove-orphans -d
+	docker-compose -f docker-compose.yml up --remove-orphans -d
 
 
 restart: stop start
+```
