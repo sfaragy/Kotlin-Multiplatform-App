@@ -1,13 +1,19 @@
 version: "3.9"
 services:
-  kotlin-multiplatform-app-project:
+  kmp-builder:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: kmp-dev
     volumes:
       - .:/app
+      - ~/.android/sdk:/opt/android-sdk
+      - ~/.gradle:/root/.gradle
+    working_dir: /app
+    environment:
+      ANDROID_SDK_ROOT: /opt/android-sdk
     ports:
       - "8080:8080"
-    environment:
-      ANDROID_HOME: /opt/android-sdk
     tty: true
+
+

@@ -16,7 +16,7 @@ The entire build process is containerized using Docker, allowing the project to 
 
 ## Makefile to enhance productivity:
 ``` 
-.PHONY: build stop start restart
+.PHONY: build stop start restart, shared_build, android_build, web_build, ios_build
 
 
 build: stop
@@ -30,6 +30,35 @@ start: stop init_server
 init_server:
 	docker-compose -f docker-compose.yml up --remove-orphans -d
 
-
 restart: stop start
+
+shared_build:
+	docker exec -it kmp-dev ./gradlew :shared:build
+
+android_build:
+	docker exec -it kmp-dev ./gradlew :androidApp:assembleDebug
+
+web_build:
+	docker exec -it kmp-dev ./gradlew :web:jsBrowserProductionWebpack
+
+ios_build:
+	docker exec -it kmp-dev ./gradlew :shared:iosX64Test
+
 ```
+
+## Basic commands to use the environment
+
+
+1. Build Docker image: ```docker-compose build```
+2. Run container: start / stop: ```docker-compose up -d ``` / ```docker-compose down ``` Other way ```make start``` / ```make stop```
+3. Build shared code: ```make shared_build```
+4. Build Android: ```make android_build```
+5. Build Web: ```make web_build```
+6. Build iOS: ```make ios_build```
+7. Or Notes to Build Inside container: (if Make commands are not functional)
+    ```
+    gradle :shared:build
+    gradle :androidApp:assembleDebug
+    gradle :web:jsBrowserProductionWebpack
+    gradle :shared:iosX64Test
+    ```

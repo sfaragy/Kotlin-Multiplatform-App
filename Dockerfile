@@ -1,5 +1,5 @@
-
 FROM ubuntu:22.04
+
 RUN apt-get update && apt-get install -y \
     curl git unzip zip wget software-properties-common \
     openjdk-17-jdk \
@@ -19,17 +19,14 @@ ENV ANDROID_SDK_ROOT=/opt/android-sdk
 RUN mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools \
     && cd ${ANDROID_SDK_ROOT}/cmdline-tools \
     && wget https://dl.google.com/android/repository/commandlinetools-linux-10406996_latest.zip -O tools.zip \
-    && unzip tools.zip -d latest \
-    && rm tools.zip
+    && unzip tools.zip -d temp \
+    && mv temp/cmdline-tools ${ANDROID_SDK_ROOT}/cmdline-tools/latest \
+    && rm -rf temp tools.zip
 
 ENV PATH="${PATH}:${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin:${ANDROID_SDK_ROOT}/platform-tools"
 
-RUN yes | sdkmanager --licenses || true
-RUN sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0" "ndk;25.2.9519653"
+RUN yes | sdkmanager --licenses || true \
+    && sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0" "ndk;25.2.9519653"
 
 WORKDIR /app
-COPY . .
-
-RUN gradle :shared:build
-
-CMD ["bash"]
+CMD [ "bash" ]
