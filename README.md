@@ -55,13 +55,10 @@ ios_build:
 4. Build Android: ```make android_build```
 5. Build Web: ```make web_build```
 6. Build iOS: ```make ios_build```
-7. Or Notes to Build Inside container: (if Make commands are not functional)
-    ```
-    gradle :shared:build
-    gradle :androidApp:assembleDebug
-    gradle :web:jsBrowserProductionWebpack
-    gradle :shared:iosX64Test
-    ```
+7. Build shared Kotlin module: ``` make shared_build ```
+8. Install backend dependencies: ``` make backend_build ```
+9. Start backend: ```make backend_start```  
+10. Run backend auth test suite: ```make backend_test_auth```
 
 
 # Personal Finance Tracker (Kotlin Multiplatform): May 17, 2025
@@ -98,6 +95,14 @@ A cross-platform personal finance tracker built with **Kotlin Multiplatform**, *
 | Backend | Node API, JWT | Next |
 | CI/CD | Vercel + GitHub Actions | Later |
 
+## Tech Stack
+
+   - Frontend: Kotlin Multiplatform (Android, iOS, JS)
+   - Backend: Node.js + Express.js   
+   - Build: Docker, Docker Compose, Gradle, Makefile   
+   - Auth: JWT-based with lowdb for persistence
+
+Testing: Jest
 ## Deployment
 Web:   
 API: 
@@ -133,4 +138,9 @@ POST /api/login
 POST /api/logout
 
 GET /api/me
+```
+
+## Backend running on port 8088, i.e. User Profile
+```
+http://localhost:8088/api/me
 ```
