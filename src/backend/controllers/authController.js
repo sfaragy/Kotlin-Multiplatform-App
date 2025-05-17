@@ -1,3 +1,5 @@
+const supabase = require('../lib/supabase');
+
 exports.login = (req, res) => {
     const { email, password } = req.body;
     if (email && password) {
