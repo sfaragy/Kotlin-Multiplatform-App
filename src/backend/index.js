@@ -1,11 +1,14 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+const authRoutes = require('./routes/auth');
+
 const app = express();
-const PORT = process.env.PORT || 3001;
+app.use(bodyParser.json());
 
-app.get('/health', (req, res) => {
-    res.status(200).json({ status: 'ok' });
-});
+app.use('/api', authRoutes);
 
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
-    console.log(`Backend listening on port ${PORT}`);
+    console.log(`Backend running on port ${PORT}`);
 });
+

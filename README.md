@@ -102,3 +102,35 @@ A cross-platform personal finance tracker built with **Kotlin Multiplatform**, *
 Web:   
 API: 
 
+
+## Backend endpoints for:
+### 1. Transactions:
+
+   ```
+   GET /api/transactions
+   
+   POST /api/transactions
+   
+   DELETE /api/transactions/:id
+   ```
+   
+   ### 2. Budgets
+   
+   ```
+   GET /api/budgets
+   
+   POST /api/budgets
+   
+   DELETE /api/budgets/:id
+   
+   ```
+
+### 3. Auth (Initially Mocked later implement with JWT)
+
+``` 
+POST /api/login
+
+POST /api/logout
+
+GET /api/me
+```
