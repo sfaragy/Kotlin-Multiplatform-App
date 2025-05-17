@@ -8,5 +8,5 @@ RUN npm install
 
 COPY ./src/backend .
 
-EXPOSE 3001
-CMD ["npm", "start"]
+EXPOSE 8088
+CMD ["npm", "run", "dev"]
