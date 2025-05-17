@@ -27,4 +27,10 @@ describe('Auth API', () => {
         expect(res.statusCode).toEqual(200);
         expect(res.body.message).toEqual("Logged out");
     });
+
+    test('GET /api/me should return user profile', async () => {
+        const res = await request(app).get('/api/me');
+        expect(res.statusCode).toBe(200);
+        expect(res.body).toHaveProperty('name', 'Soliman Faragy');
+    });
 });

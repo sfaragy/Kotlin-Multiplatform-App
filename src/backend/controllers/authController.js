@@ -9,6 +9,13 @@ exports.login = (req, res) => {
     return res.status(400).json({ error: "Email and password required" });
 };
 
+exports.me = (req, res) => {
+    return res.status(200).json({
+        name: 'Soliman Faragy',
+    });
+};
+
+
 exports.logout = (_req, res) => {
     return res.status(200).json({ message: "Logged out" });
 };
