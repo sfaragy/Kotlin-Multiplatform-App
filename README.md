@@ -62,3 +62,43 @@ ios_build:
     gradle :web:jsBrowserProductionWebpack
     gradle :shared:iosX64Test
     ```
+
+
+# Personal Finance Tracker (Kotlin Multiplatform): May 17, 2025
+
+A cross-platform personal finance tracker built with **Kotlin Multiplatform**, **Docker**, and **Node.js**. Supports Android, iOS, and Web.
+
+## Features as per planning
+- Track income & expenses
+- Cross-platform shared business logic
+- Offline support with local storage
+- Sync via backend API
+- Budget and category tracking
+- Dockerized builds for all environments
+
+## Project Structure
+ - src/
+   - shared/ → Kotlin Multiplatform shared logic
+   - androidApp/ → Android App (Jetpack Compose)
+   - iosApp/ → iOS App (Swift + KMP)
+   - web/ → Web Frontend (Kotlin/JS)
+   - backend/ → Node.js + Express REST API
+
+## Test Strategy
+- Red-Green-Refactor using `kotlin.test` and `mockk`
+- Unit test for shared logic
+- Backend routes test with Postman
+
+## Milestones
+| Phase | Task | Status |
+|-------|------|------|
+| Setup | Shared models, Docker | In Progress |
+| Core  | CRUD Logic | Next |
+| Frontend | Android/Web UI | Next |
+| Backend | Node API, JWT | Next |
+| CI/CD | Vercel + GitHub Actions | Later |
+
+## Deployment
+Web:   
+API: 
+
